@@ -1,10 +1,12 @@
 # depslib dependency file v1.0
-1711566964 source:d:\ngtvu\c++\projectsdl2\golf\main.cpp
+1712249697 source:d:\ngtvu\c++\projectsdl2\golf\main.cpp
 	<bits/stdc++.h>
 	<SDL.h>
 	<SDL_image.h>
+	<SDL_mixer.h>
 	"graphic.h"
 	"Ball.h"
+	"Hole.h"
 
 1698944750 c:\users\ngtvu\downloads\sdl2-devel-2.28.5-mingw\sdl2-2.28.5\x86_64-w64-mingw32\include\sdl2\sdl.h
 	"SDL_main.h"
@@ -414,13 +416,13 @@
 	"defs.h"
 	"entity.h"
 
-1711566383 source:d:\ngtvu\c++\projectsdl2\golf\entity.cpp
+1712246646 source:d:\ngtvu\c++\projectsdl2\golf\entity.cpp
 	<bits/stdc++.h>
 	<SDL.h>
 	<SDL_image.h>
 	"entity.h"
 
-1711731542 d:\ngtvu\c++\projectsdl2\golf\entity.h
+1712243693 d:\ngtvu\c++\projectsdl2\golf\entity.h
 	<SDL.h>
 	<SDL_image.h>
 	"math.h"
@@ -428,20 +430,23 @@
 1711387548 d:\ngtvu\c++\projectsdl2\golf\math.h
 	<iostream>
 
-1711724631 source:d:\ngtvu\c++\projectsdl2\golf\graphic.cpp
+1712160558 source:d:\ngtvu\c++\projectsdl2\golf\graphic.cpp
 	<bits/stdc++.h>
 	<SDL.h>
+	<SDL_mixer.h>
 	"graphic.h"
 	"entity.h"
 
-1711608507 source:d:\ngtvu\c++\projectsdl2\golf\ball.cpp
+1712249820 source:d:\ngtvu\c++\projectsdl2\golf\ball.cpp
 	<bits/stdc++.h>
 	<SDL.h>
 	<SDL_image.h>
+	<SDL_mixer.h>
 	"defs.h"
 	"entity.h"
 	"math.h"
 	"Ball.h"
+	"Hole.h"
 
 1711384502 source:d:\ngtvu\c++\projectsdl2\golf\hole.cpp
 	"Hole.h"
@@ -455,10 +460,12 @@
 	"entity.h"
 	"math.h"
 
-1711561719 d:\ngtvu\c++\projectsdl2\golf\ball.h
+1712249489 d:\ngtvu\c++\projectsdl2\golf\ball.h
 	<bits/stdc++.h>
 	<SDL.h>
 	<SDL_image.h>
+	<SDL_mixer.h>
 	"entity.h"
 	"math.h"
+	"Hole.h"
 

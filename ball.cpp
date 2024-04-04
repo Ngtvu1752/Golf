@@ -1,17 +1,19 @@
 #include<bits/stdc++.h>
 #include<SDL.h>
 #include<SDL_image.h>
+#include<SDL_mixer.h>
 
 #include "defs.h"
 #include "entity.h"
 #include "math.h"
 #include "Ball.h"
+#include "Hole.h"
 
 using namespace std;
-Ball::Ball(Vector2f p_pos, SDL_Texture* p_tex)
+Ball::Ball(Vector2f p_pos, SDL_Texture* p_tex,SDL_Texture* p_point)
 :Entity(p_pos, p_tex)
 {
-
+    point.push_back(Entity(Vector2f(-32,-32), p_point));
 }
 void Ball::setVelocity(float x, float y)
 {
@@ -28,8 +30,45 @@ void Ball::setLauchedVelocity(float x, float y)
     lauchedVelocity.x = x;
     lauchedVelocity.y = y;
 }
-void Ball::update(double deltaTime, bool mousePressed, bool mouseDown)
+void Ball::setWin(bool p_win)
 {
+    win = p_win;
+}
+
+void Ball::update(double deltaTime, bool mousePressed, bool mouseDown, Hole hole, Mix_Chunk* holeSfx)
+{
+    target.x = hole.getPos().x ;
+    target.y = hole.getPos().y + 3;
+    if(win)
+    {
+        if(getPos().x < target.x)
+        {
+            setPos(getPos().x += 0.1*deltaTime, getPos().y);
+        }
+        else if(getPos().x > target.x)
+        {
+            setPos(getPos().x -= 0.1*deltaTime, getPos().y);
+        }
+
+        if(getPos().y < target.y)
+        {
+            setPos(getPos().x, getPos().y += 0.1*deltaTime);
+        }
+        else if(getPos().y > target.y)
+        {
+            setPos(getPos().x, getPos().y -= 0.1*deltaTime);
+        }
+
+        setScale(getScale().x - 0.001*deltaTime, getScale().y - 0.001*deltaTime);
+        return;
+    }
+    if(getPos().x +4 > hole.getPos().x && getPos().x < hole.getPos().x + 4 && getPos().y+4 >hole.getPos().y && getPos().y < hole.getPos().y+4 )
+    {
+        Mix_PlayChannel(-1, holeSfx, 0);
+        setWin(true);
+        target.x = hole.getPos().x ;
+        target.y = hole.getPos().y + 3;
+    }
     if(mousePressed &&canMove)
     {
         int mouseX = 0;
@@ -47,6 +86,9 @@ void Ball::update(double deltaTime, bool mousePressed, bool mouseDown)
         velocity1D = SDL_sqrt(getVelocity().x * getVelocity().x + getVelocity().y * getVelocity().y);
         lauchedVelocity1D = velocity1D;
 
+        point[0].setPos(getPos().x, getPos().y + 8 - 32);
+        point[0].setAngle(SDL_atan2(velocity.y, velocity.x)*(180/3.1415)+90);
+
         dirX = velocity.x/abs(velocity.x);
         dirY = velocity.y/abs(velocity.y);
         if(velocity1D > 1)
@@ -58,6 +100,7 @@ void Ball::update(double deltaTime, bool mousePressed, bool mouseDown)
     else
     {
         canMove = 0;
+        point[0].setPos(-32,-32);
         setPos(getPos().x + getVelocity().x * deltaTime, getPos().y + getVelocity().y*deltaTime);
         if(getVelocity().x > 0.001 || getVelocity().x < -0.001 || getVelocity().y > 0.001 || getVelocity().y < -0.001)
         {

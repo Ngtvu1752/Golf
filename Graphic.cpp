@@ -1,5 +1,6 @@
 #include<bits/stdc++.h>
 #include<SDL.h>
+#include<SDL_mixer.h>
 #include "graphic.h"
 #include "entity.h"
 using namespace std;
@@ -33,6 +34,7 @@ Graphic::Graphic(int w, int h, const char* filename)
                                   SDL_RENDERER_PRESENTVSYNC);
     //Khi chạy trong máy ảo (ví dụ phòng máy ở trường)
     //renderer = SDL_CreateSoftwareRenderer(SDL_GetWindowSurface(window));
+    Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
 
     if (renderer == NULL) logErrorAndExit("CreateRenderer", SDL_GetError());
 
@@ -63,12 +65,12 @@ void Graphic::renderEntity(Entity& p_entity)
     src.h = p_entity.getCurrFrame().h;
 
     SDL_Rect dst;
-    dst.x = p_entity.getPos().x;
-    dst.y = p_entity.getPos().y;
-    dst.w = p_entity.getCurrFrame().w;
-    dst.h = p_entity.getCurrFrame().h;
+    dst.x = p_entity.getPos().x + (p_entity.getCurrFrame().w - p_entity.getCurrFrame().w*p_entity.getScale().x)/2;
+    dst.y = p_entity.getPos().y + (p_entity.getCurrFrame().h - p_entity.getCurrFrame().h*p_entity.getScale().y)/2;
+    dst.w = p_entity.getCurrFrame().w*p_entity.getScale().x;
+    dst.h = p_entity.getCurrFrame().h*p_entity.getScale().y;
 
-    SDL_RenderCopy(renderer, p_entity.getTex(), &src, &dst);
+    SDL_RenderCopyEx(renderer, p_entity.getTex(), &src, &dst, p_entity.getAngle(),0, SDL_FLIP_NONE);
 }
 void Graphic::renderTexture( int x, int y, SDL_Texture* texture)
 {
@@ -96,8 +98,9 @@ void Graphic::quitSDL()
 {
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
-    SDL_Quit();
+    Mix_Quit();
     IMG_Quit();
+    SDL_Quit();
 }
 void Graphic::clear()
 {

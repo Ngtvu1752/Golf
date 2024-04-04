@@ -29,3 +29,12 @@ void Entity::setPos(float x, float y)
     pos.x = x;
     pos.y = y;
 }
+void Entity::setAngle(float p_angle)
+{
+    angle = p_angle;
+}
+void Entity::setScale(float w, float h)
+{
+    scale.x = w;
+    scale.y = h;
+}

@@ -1,9 +1,11 @@
 #include<bits/stdc++.h>
 #include<SDL.h>
 #include<SDL_image.h>
-
+#include<SDL_mixer.h>
 #include "graphic.h"
 #include "Ball.h"
+#include "Hole.h"
+
 using namespace std;
 
 //void logErrorAndExit(const char*msg, const char* error)
@@ -14,7 +16,17 @@ using namespace std;
 
 Graphic window(WIDTH, HEIGHT, Window_Title);
 Vector2f pos(200,200);
+SDL_Texture* bg = window.loadingTexture("img/bg.png");
 SDL_Texture* pointTex = window.loadingTexture("img/point.png");
+SDL_Texture* holeTex = window.loadingTexture("img/hole.png");
+SDL_Texture* ballTex = window.loadingTexture("img/ball.png");
+Mix_Chunk* chargeSfx = Mix_LoadWAV("music/charge.mp3");
+Mix_Chunk* holeSfx = Mix_LoadWAV("music/hihi.mp3");
+
+Ball ball = Ball(pos, ballTex, pointTex);
+Hole hole(Vector2f(300,300), holeTex);
+
+int state = 0;
 void keyPress()
 {
     SDL_Event e;
@@ -36,22 +48,11 @@ Uint64 curTick = SDL_GetPerformanceCounter();
 Uint64 lastTick = 0;
 double deltaTime = 0;
 bool mousePressed = 0, mouseDown = 0;
-
-int main( int argc, char* args[])
+bool gameRunning = 1;
+bool win = 0;
+SDL_Event e;
+void update()
 {
-    SDL_Texture* bg = window.loadingTexture("img/bg.png");
-    window.render(bg);
-    window.display();
-    keyPress();
-    SDL_Texture* ballTex = window.loadingTexture("img/ball.png");
-    Ball ball(pos, ballTex);
-    window.renderEntity(ball);
-    window.display();
-
-    SDL_Event e;
-
-    while(true)
-    {
         mousePressed = 0;
         lastTick = curTick;
         curTick = SDL_GetPerformanceCounter();
@@ -61,8 +62,8 @@ int main( int argc, char* args[])
             switch(e.type)
             {
             case SDL_QUIT:
-                return 0;
-                SDL_Delay(1000);
+                gameRunning = 0;
+                break;
             case SDL_MOUSEBUTTONDOWN:
                 if(e.button.button == SDL_BUTTON_LEFT)
                 {
@@ -78,12 +79,49 @@ int main( int argc, char* args[])
                 break;
             }
         }
-        ball.update(deltaTime, mousePressed, mouseDown);
+        ball.update(deltaTime, mousePressed, mouseDown, hole,holeSfx);
         window.clear();
         window.render(bg);
+        window.renderEntity(hole);
+
+        for(Entity& e : ball.getPoint())
+        {
+            window.renderEntity(e);
+        }
         window.renderEntity(ball);
         window.display();
-
+}
+//void game()
+//{
+//    if(state == 0)
+//    {
+//        titleScreen();
+//    }
+//    else
+//    {
+//        update();
+//    }
+//}
+int main( int argc, char* args[])
+{
+    window.render(bg);
+    window.display();
+    keyPress();
+    window.renderEntity(ball);
+    window.display();
+    keyPress();
+    window.renderEntity(hole);
+    window.display();
+    SDL_Event e;
+    if(holeSfx == NULL)
+    {
+        cout<<11111;
+    }
+    ball.setWin(false);
+    while(true)
+    {
+        update();
+        if(gameRunning == 0) break;
     }
     SDL_DestroyTexture(ballTex);
     ballTex = NULL;
