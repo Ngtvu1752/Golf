@@ -11,7 +11,7 @@ using namespace std;
 class Ball : public Entity
 {
 public:
-    Ball(Vector2f p_pos, SDL_Texture* p_tex, SDL_Texture* p_point);
+    Ball(Vector2f p_pos, SDL_Texture* p_tex, SDL_Texture* p_point, SDL_Texture* powerBE, SDL_Texture* powerFE);
     Vector2f& getVelocity()
     {
         return velocity;
@@ -23,6 +23,10 @@ public:
     vector<Entity> getPoint()
     {
         return point;
+    }
+    vector<Entity> getBar()
+    {
+        return forceBar;
     }
     bool isWin()
     {
@@ -46,4 +50,5 @@ private:
     bool canMove = 1;
     bool win = false;
     vector<Entity> point; //optimise
+    vector<Entity> forceBar;
 };

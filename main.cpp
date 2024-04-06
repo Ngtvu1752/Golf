@@ -20,10 +20,13 @@ SDL_Texture* bg = window.loadingTexture("img/bg.png");
 SDL_Texture* pointTex = window.loadingTexture("img/point.png");
 SDL_Texture* holeTex = window.loadingTexture("img/hole.png");
 SDL_Texture* ballTex = window.loadingTexture("img/ball.png");
+SDL_Texture* powerBE = window.loadingTexture("img/powermeter_bg.png");
+SDL_Texture* powerFE = window.loadingTexture("img/powermeter_fg.png");
+SDL_Texture* power = window.loadingTexture("img/powermeter_overlay.png");
 Mix_Chunk* chargeSfx = Mix_LoadWAV("music/charge.mp3");
 Mix_Chunk* holeSfx = Mix_LoadWAV("music/hihi.mp3");
 
-Ball ball = Ball(pos, ballTex, pointTex);
+Ball ball = Ball(pos, ballTex, pointTex, powerBE, powerFE);
 Hole hole(Vector2f(300,300), holeTex);
 
 int state = 0;
@@ -88,9 +91,15 @@ void update()
         {
             window.renderEntity(e);
         }
+        for(Entity& f : ball.getBar())
+        {
+            window.renderEntity(f);
+        }
+        window.renderTexture(ball.getBar().at(0).getPos().x, ball.getBar().at(0).getPos().y, power);
         window.renderEntity(ball);
         window.display();
 }
+
 //void game()
 //{
 //    if(state == 0)

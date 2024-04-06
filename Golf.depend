@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1712249697 source:d:\ngtvu\c++\projectsdl2\golf\main.cpp
+1712394397 source:d:\ngtvu\c++\projectsdl2\golf\main.cpp
 	<bits/stdc++.h>
 	<SDL.h>
 	<SDL_image.h>
@@ -437,7 +437,7 @@
 	"graphic.h"
 	"entity.h"
 
-1712249820 source:d:\ngtvu\c++\projectsdl2\golf\ball.cpp
+1712394489 source:d:\ngtvu\c++\projectsdl2\golf\ball.cpp
 	<bits/stdc++.h>
 	<SDL.h>
 	<SDL_image.h>
@@ -460,7 +460,7 @@
 	"entity.h"
 	"math.h"
 
-1712249489 d:\ngtvu\c++\projectsdl2\golf\ball.h
+1712394397 d:\ngtvu\c++\projectsdl2\golf\ball.h
 	<bits/stdc++.h>
 	<SDL.h>
 	<SDL_image.h>

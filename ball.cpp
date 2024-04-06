@@ -10,10 +10,12 @@
 #include "Hole.h"
 
 using namespace std;
-Ball::Ball(Vector2f p_pos, SDL_Texture* p_tex,SDL_Texture* p_point)
+Ball::Ball(Vector2f p_pos, SDL_Texture* p_tex,SDL_Texture* p_point, SDL_Texture* powerBE, SDL_Texture* powerFE)
 :Entity(p_pos, p_tex)
 {
-    point.push_back(Entity(Vector2f(-32,-32), p_point));
+    point.push_back(Entity(Vector2f(-50,-50), p_point));
+    forceBar.push_back(Entity(Vector2f(-50,-50),powerBE));
+    forceBar.push_back(Entity(Vector2f(-50,-50), powerFE));
 }
 void Ball::setVelocity(float x, float y)
 {
@@ -89,6 +91,8 @@ void Ball::update(double deltaTime, bool mousePressed, bool mouseDown, Hole hole
         point[0].setPos(getPos().x, getPos().y + 8 - 32);
         point[0].setAngle(SDL_atan2(velocity.y, velocity.x)*(180/3.1415)+90);
 
+        forceBar[0].setPos(getPos().x + 40, getPos().y - 30);
+        forceBar[1].setPos(getPos().x + 44, getPos().y + 4 - 32*forceBar[1].getScale().y);
         dirX = velocity.x/abs(velocity.x);
         dirY = velocity.y/abs(velocity.y);
         if(velocity1D > 1)
@@ -96,11 +100,14 @@ void Ball::update(double deltaTime, bool mousePressed, bool mouseDown, Hole hole
             velocity1D = 1;
             lauchedVelocity1D = 1;
         }
+        forceBar[1].setScale(1, velocity1D);
     }
     else
     {
         canMove = 0;
-        point[0].setPos(-32,-32);
+        point[0].setPos(-50,-50);
+        forceBar[0].setPos(-50,-50);
+        forceBar[1].setPos(-50,-50);
         setPos(getPos().x + getVelocity().x * deltaTime, getPos().y + getVelocity().y*deltaTime);
         if(getVelocity().x > 0.001 || getVelocity().x < -0.001 || getVelocity().y > 0.001 || getVelocity().y < -0.001)
         {
