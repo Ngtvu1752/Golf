@@ -8,6 +8,8 @@ class Entity
 {
 public:
     Entity(Vector2f p_pos, SDL_Texture* p_tex);
+//    ~Entity();
+    void free();
     Vector2f& getPos()
     {
         return pos;
@@ -25,6 +27,8 @@ public:
     void setPos(float x, float y);
     void setAngle(float angle);
     void setScale(float w, float h);
+    void setCurframe(int x, int y, int w, int h);
+    bool chkIn(int x ,int y);
 
 private:
     Vector2f pos;

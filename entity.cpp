@@ -12,7 +12,10 @@ Entity::Entity(Vector2f p_pos, SDL_Texture* p_tex)
     currFrame.y = 0;
     SDL_QueryTexture(p_tex, NULL, NULL, &currFrame.w, &currFrame.h);
 }
-
+//Entity::~Entity()
+//{
+//    free();
+//}
 SDL_Texture* Entity::getTex()
 {
     return tex;
@@ -37,4 +40,29 @@ void Entity::setScale(float w, float h)
 {
     scale.x = w;
     scale.y = h;
+}
+void Entity::setCurframe(int x, int y, int w, int h)
+{
+    currFrame.x = x;
+    currFrame.y = y;
+    currFrame.w = w;
+    currFrame.h = h;
+}
+void Entity::free()
+{
+    if(tex != NULL)
+    {
+        SDL_DestroyTexture(tex);
+        tex = NULL;
+    }
+}
+
+bool Entity::chkIn(int x, int y)
+{
+    if(x < pos.x) return false;
+    else if(y < pos.y) return false;
+    else if(x > currFrame.w + pos.x) return false;
+    else if(y > currFrame.h + pos.y) return false;
+
+    return true;
 }

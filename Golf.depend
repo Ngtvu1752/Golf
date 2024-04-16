@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1712394397 source:d:\ngtvu\c++\projectsdl2\golf\main.cpp
+1713105190 source:d:\ngtvu\c++\projectsdl2\golf\main.cpp
 	<bits/stdc++.h>
 	<SDL.h>
 	<SDL_image.h>
@@ -7,6 +7,7 @@
 	"graphic.h"
 	"Ball.h"
 	"Hole.h"
+	"Button.h"
 
 1698944750 c:\users\ngtvu\downloads\sdl2-devel-2.28.5-mingw\sdl2-2.28.5\x86_64-w64-mingw32\include\sdl2\sdl.h
 	"SDL_main.h"
@@ -407,22 +408,23 @@
 	"begin_code.h"
 	"close_code.h"
 
-1711565717 d:\ngtvu\c++\projectsdl2\golf\defs.h
+1713088988 d:\ngtvu\c++\projectsdl2\golf\defs.h
 
-1711566184 d:\ngtvu\c++\projectsdl2\golf\graphic.h
+1713113289 d:\ngtvu\c++\projectsdl2\golf\graphic.h
 	<bits/stdc++.h>
 	<SDL.h>
 	<SDL_image.h>
+	<SDL_ttf.h>
 	"defs.h"
 	"entity.h"
 
-1712246646 source:d:\ngtvu\c++\projectsdl2\golf\entity.cpp
+1713004466 source:d:\ngtvu\c++\projectsdl2\golf\entity.cpp
 	<bits/stdc++.h>
 	<SDL.h>
 	<SDL_image.h>
 	"entity.h"
 
-1712243693 d:\ngtvu\c++\projectsdl2\golf\entity.h
+1713004466 d:\ngtvu\c++\projectsdl2\golf\entity.h
 	<SDL.h>
 	<SDL_image.h>
 	"math.h"
@@ -430,14 +432,14 @@
 1711387548 d:\ngtvu\c++\projectsdl2\golf\math.h
 	<iostream>
 
-1712160558 source:d:\ngtvu\c++\projectsdl2\golf\graphic.cpp
+1713113658 source:d:\ngtvu\c++\projectsdl2\golf\graphic.cpp
 	<bits/stdc++.h>
 	<SDL.h>
 	<SDL_mixer.h>
 	"graphic.h"
 	"entity.h"
 
-1712394489 source:d:\ngtvu\c++\projectsdl2\golf\ball.cpp
+1713108807 source:d:\ngtvu\c++\projectsdl2\golf\ball.cpp
 	<bits/stdc++.h>
 	<SDL.h>
 	<SDL_image.h>
@@ -460,7 +462,7 @@
 	"entity.h"
 	"math.h"
 
-1712394397 d:\ngtvu\c++\projectsdl2\golf\ball.h
+1712988754 d:\ngtvu\c++\projectsdl2\golf\ball.h
 	<bits/stdc++.h>
 	<SDL.h>
 	<SDL_image.h>
@@ -468,4 +470,23 @@
 	"entity.h"
 	"math.h"
 	"Hole.h"
+
+1713083376 source:d:\ngtvu\c++\projectsdl2\golf\button.cpp
+	<bits/stdc++.h>
+	<SDL.h>
+	<SDL_image.h>
+	<SDL_mixer.h>
+	"math.h"
+	"graphic.h"
+	"Button.h"
+
+1713070913 d:\ngtvu\c++\projectsdl2\golf\button.h
+	<bits/stdc++.h>
+	<SDL.h>
+	<SDL_image.h>
+	<SDL_mixer.h>
+	"entity.h"
+	"math.h"
+	"Hole.h"
+	"graphic.h"
 

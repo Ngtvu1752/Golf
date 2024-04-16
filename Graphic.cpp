@@ -34,6 +34,11 @@ Graphic::Graphic(int w, int h, const char* filename)
                                   SDL_RENDERER_PRESENTVSYNC);
     //Khi chạy trong máy ảo (ví dụ phòng máy ở trường)
     //renderer = SDL_CreateSoftwareRenderer(SDL_GetWindowSurface(window));
+    if (TTF_Init() == -1)
+    {
+        logErrorAndExit("SDL_ttf could not initialize! SDL_ttf Error: ",
+                        TTF_GetError());
+    }
     Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
 
     if (renderer == NULL) logErrorAndExit("CreateRenderer", SDL_GetError());
@@ -45,16 +50,37 @@ Graphic::Graphic(int w, int h, const char* filename)
 SDL_Texture* Graphic::loadingTexture(const char* filename)
 {
     SDL_Texture* texture = NULL;
-	texture = IMG_LoadTexture(renderer, filename);
+    texture = IMG_LoadTexture(renderer, filename);
 
-	if (texture == NULL)
-		std::cout << "Failed to load texture. Error: " << SDL_GetError() << std::endl;
+    if (texture == NULL)
+        cout << "Failed to load texture. Error: " << SDL_GetError() <<endl;
 
-	return texture;
+    return texture;
 }
-void Graphic::render(SDL_Texture* p_tex)
+TTF_Font* Graphic::loadFont(const char* filename, int size)
 {
-    SDL_RenderCopy(renderer, p_tex, NULL, NULL);
+    TTF_Font* gFont = TTF_OpenFont( filename, size );
+    if (gFont == nullptr)
+    {
+        SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION,
+                       SDL_LOG_PRIORITY_ERROR,
+                       "Load font %s", TTF_GetError());
+    }
+
+}
+void Graphic::render(SDL_Texture* p_tex, int x, int y, SDL_Rect* src)
+{
+    SDL_Rect dst;
+    dst.x = x;
+    dst.y = y;
+    SDL_QueryTexture(p_tex, NULL, NULL, &dst.w, &dst.h);
+
+    if(src != nullptr)
+    {
+        dst.w = src->w;
+        dst.h = src->h;
+    }
+    SDL_RenderCopy(renderer, p_tex, src, &dst);
 }
 void Graphic::renderEntity(Entity& p_entity)
 {
@@ -72,6 +98,7 @@ void Graphic::renderEntity(Entity& p_entity)
 
     SDL_RenderCopyEx(renderer, p_entity.getTex(), &src, &dst, p_entity.getAngle(),0, SDL_FLIP_NONE);
 }
+
 void Graphic::renderTexture( int x, int y, SDL_Texture* texture)
 {
     SDL_Rect src;
@@ -90,6 +117,28 @@ void Graphic::renderTexture( int x, int y, SDL_Texture* texture)
 
     SDL_RenderCopy(renderer, texture, &src, &dst);
 }
+void Graphic::renderText(int x, int y, const char* text, TTF_Font* font, SDL_Color textColor )
+{
+    SDL_Surface* surfaceMessage = TTF_RenderText_Blended( font, text, textColor);
+    SDL_Texture* message = SDL_CreateTextureFromSurface(renderer , surfaceMessage);
+
+    SDL_Rect src;
+    src.x = 0;
+    src.y = 0;
+    src.w = surfaceMessage->w;
+    src.h = surfaceMessage->h;
+
+    SDL_Rect dst;
+    dst.x = x;
+    dst.y = y;
+    dst.w = src.w;
+    dst.h = src.h;
+
+    SDL_RenderCopy(renderer, message, &src, &dst);
+    SDL_FreeSurface(surfaceMessage);
+    SDL_DestroyTexture(message);
+}
+
 void Graphic::display()
 {
     SDL_RenderPresent(renderer);
@@ -98,11 +147,12 @@ void Graphic::quitSDL()
 {
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
+    TTF_Quit();
     Mix_Quit();
     IMG_Quit();
     SDL_Quit();
 }
-void Graphic::clear()
+void Graphic::Clear()
 {
     SDL_RenderClear(renderer);
 }

@@ -32,11 +32,15 @@ public:
     {
         return win;
     }
+    int getSwings()
+    {
+        return swings;
+    }
     void setWin(bool p_win);
     void setVelocity(float x, float y);
     void setLauchedVelocity(float x, float y);
     void setInitialMousePos(float x, float y);
-    void update(double deltaTime, bool mousePressed, bool mouseDown, Hole hole, Mix_Chunk* holeSfx);
+    void update(double deltaTime, bool mousePressed, bool mouseDown, Hole hole, vector<Entity> wall, Mix_Chunk* holeSfx, Mix_Chunk* collision);
 private:
     Vector2f velocity;
     Vector2f lauchedVelocity;
@@ -48,6 +52,7 @@ private:
     int dirX = 1;
     int dirY = 1;
     bool canMove = 1;
+    int swings = 0;
     bool win = false;
     vector<Entity> point; //optimise
     vector<Entity> forceBar;

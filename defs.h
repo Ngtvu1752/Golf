@@ -1,10 +1,8 @@
 #pragma once
 #ifndef _DEFS__H
 #define _DEFS__H
-const int WIDTH = 640, HEIGHT  = 480;
+const int WIDTH = 832  , HEIGHT  = 482;
 inline const char* Window_Title = "Hello SDL2 World";
-const int BUTTON_WIDTH = 300;
-const int BUTTON_HEIGHT = 200;
 const int TOTAL_BUTTONS = 4;
 
 //void logErrorAndExit(const char*msg, const char* error)

@@ -33,10 +33,11 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="Ball.h" />
-		<Unit filename="C:/Users/ngtvu/Downloads/Twini-Golf/res/sfx/hole.mp3" />
+		<Unit filename="Button.h" />
 		<Unit filename="Graphic.cpp" />
 		<Unit filename="Hole.h" />
 		<Unit filename="ball.cpp" />
+		<Unit filename="button.cpp" />
 		<Unit filename="defs.h" />
 		<Unit filename="entity.cpp" />
 		<Unit filename="entity.h" />

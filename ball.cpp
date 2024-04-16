@@ -37,7 +37,7 @@ void Ball::setWin(bool p_win)
     win = p_win;
 }
 
-void Ball::update(double deltaTime, bool mousePressed, bool mouseDown, Hole hole, Mix_Chunk* holeSfx)
+void Ball::update(double deltaTime, bool mousePressed, bool mouseDown, Hole hole,vector<Entity>wall, Mix_Chunk* holeSfx, Mix_Chunk* collision)
 {
     target.x = hole.getPos().x ;
     target.y = hole.getPos().y + 3;
@@ -70,9 +70,11 @@ void Ball::update(double deltaTime, bool mousePressed, bool mouseDown, Hole hole
         setWin(true);
         target.x = hole.getPos().x ;
         target.y = hole.getPos().y + 3;
+        swings++;
     }
     if(mousePressed &&canMove)
     {
+        swings++;
         int mouseX = 0;
         int mouseY = 0;
         SDL_GetMouseState(&mouseX, &mouseY);
@@ -88,11 +90,13 @@ void Ball::update(double deltaTime, bool mousePressed, bool mouseDown, Hole hole
         velocity1D = SDL_sqrt(getVelocity().x * getVelocity().x + getVelocity().y * getVelocity().y);
         lauchedVelocity1D = velocity1D;
 
-        point[0].setPos(getPos().x, getPos().y + 8 - 32);
+        point[0].setPos(getPos().x , getPos().y + 8 - 32 );
         point[0].setAngle(SDL_atan2(velocity.y, velocity.x)*(180/3.1415)+90);
 
-        forceBar[0].setPos(getPos().x + 40, getPos().y - 30);
-        forceBar[1].setPos(getPos().x + 44, getPos().y + 4 - 32*forceBar[1].getScale().y);
+//        forceBar[0].setPos(getPos().x + 40, getPos().y - 30);
+//        forceBar[1].setPos(getPos().x + 44, getPos().y + 4 - 32*forceBar[1].getScale().y);
+        forceBar[0].setPos(mouseX+10, mouseY+10);
+        forceBar[1].setPos(mouseX + 14, mouseY +32 +14 - 32*forceBar[1].getScale().y);
         dirX = velocity.x/abs(velocity.x);
         dirY = velocity.y/abs(velocity.y);
         if(velocity1D > 1)
@@ -132,23 +136,52 @@ void Ball::update(double deltaTime, bool mousePressed, bool mouseDown, Hole hole
         }
         if(getPos().x + getCurrFrame().w > WIDTH)
         {
+            Mix_PlayChannel(-1,collision, 0);
             setVelocity(-(abs(getVelocity().x)), getVelocity().y);
             dirX = -1;
         }
         else if(getPos().y + getCurrFrame().h > HEIGHT)
         {
+            Mix_PlayChannel(-1,collision, 0);
             setVelocity(getVelocity().x, -abs(getVelocity().y));
             dirY = -1;
         }
         if(getPos().x < 0)
         {
+            Mix_PlayChannel(-1,collision, 0);
             setVelocity(abs(getVelocity().x), getVelocity().y);
             dirX = 1;
         }
         if(getPos().y < 0)
         {
+            Mix_PlayChannel(-1,collision, 0);
             setVelocity(getVelocity().x, abs(getVelocity().y));
             dirY = 1;
         }
+
+        for(Entity& e : wall)
+        {
+            float nX =  getPos().x + getVelocity().x*deltaTime;
+            float nY = getPos().y;
+            if(nX + 16 > e.getPos().x && nX  < e.getPos().x + e.getCurrFrame().w
+               && nY + 16 > e.getPos().y && nY  < e.getPos().y + e.getCurrFrame().h-3)
+            {
+                Mix_PlayChannel(-1,collision, 0);
+                setVelocity(getVelocity().x * -1, getVelocity().y);
+                dirX *= -1;
+            }
+
+             nX =  getPos().x  ;
+             nY = getPos().y + getVelocity().y*deltaTime;
+            if(nX + 16 > e.getPos().x && nX  < e.getPos().x + e.getCurrFrame().w
+               && nY + 16 > e.getPos().y && nY  < e.getPos().y + e.getCurrFrame().h-3)
+            {
+                Mix_PlayChannel(-1,collision, 0);
+                setVelocity(getVelocity().x , getVelocity().y * -1);
+                dirY *= -1;
+            }
+
+        }
+
     }
 }
