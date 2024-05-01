@@ -3,7 +3,6 @@
 #include<SDL_image.h>
 #include "math.h"
 
-
 class Entity
 {
 public:
@@ -28,6 +27,7 @@ public:
     void setAngle(float angle);
     void setScale(float w, float h);
     void setCurframe(int x, int y, int w, int h);
+    void setCurframe(SDL_Rect src);
     bool chkIn(int x ,int y);
 
 private:

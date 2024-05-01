@@ -8,6 +8,7 @@
 #include "math.h"
 #include "Ball.h"
 #include "Hole.h"
+#include "graphic.h"
 
 using namespace std;
 Ball::Ball(Vector2f p_pos, SDL_Texture* p_tex,SDL_Texture* p_point, SDL_Texture* powerBE, SDL_Texture* powerFE)
@@ -60,7 +61,6 @@ void Ball::update(double deltaTime, bool mousePressed, bool mouseDown, Hole hole
         {
             setPos(getPos().x, getPos().y -= 0.1*deltaTime);
         }
-
         setScale(getScale().x - 0.001*deltaTime, getScale().y - 0.001*deltaTime);
         return;
     }
@@ -109,6 +109,7 @@ void Ball::update(double deltaTime, bool mousePressed, bool mouseDown, Hole hole
     else
     {
         canMove = 0;
+//        Mix_PlayChannel(-1,hit,0);
         point[0].setPos(-50,-50);
         forceBar[0].setPos(-50,-50);
         forceBar[1].setPos(-50,-50);

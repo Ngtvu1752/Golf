@@ -34,10 +34,16 @@
 		</Compiler>
 		<Unit filename="Ball.h" />
 		<Unit filename="Button.h" />
+		<Unit filename="Circle,h.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Circle.h" />
 		<Unit filename="Graphic.cpp" />
 		<Unit filename="Hole.h" />
+		<Unit filename="Timer.h" />
 		<Unit filename="ball.cpp" />
 		<Unit filename="button.cpp" />
+		<Unit filename="circle.cpp" />
 		<Unit filename="defs.h" />
 		<Unit filename="entity.cpp" />
 		<Unit filename="entity.h" />
@@ -45,6 +51,7 @@
 		<Unit filename="hole.cpp" />
 		<Unit filename="main.cpp" />
 		<Unit filename="math.h" />
+		<Unit filename="timer.cpp" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

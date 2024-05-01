@@ -48,6 +48,10 @@ void Entity::setCurframe(int x, int y, int w, int h)
     currFrame.w = w;
     currFrame.h = h;
 }
+void Entity::setCurframe(SDL_Rect src)
+{
+    currFrame = src;
+}
 void Entity::free()
 {
     if(tex != NULL)

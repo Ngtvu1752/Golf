@@ -51,7 +51,6 @@ SDL_Texture* Graphic::loadingTexture(const char* filename)
 {
     SDL_Texture* texture = NULL;
     texture = IMG_LoadTexture(renderer, filename);
-
     if (texture == NULL)
         cout << "Failed to load texture. Error: " << SDL_GetError() <<endl;
 

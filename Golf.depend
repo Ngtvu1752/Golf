@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1713105190 source:d:\ngtvu\c++\projectsdl2\golf\main.cpp
+1714551000 source:d:\ngtvu\c++\projectsdl2\golf\main.cpp
 	<bits/stdc++.h>
 	<SDL.h>
 	<SDL_image.h>
@@ -8,6 +8,7 @@
 	"Ball.h"
 	"Hole.h"
 	"Button.h"
+	"Timer.h"
 
 1698944750 c:\users\ngtvu\downloads\sdl2-devel-2.28.5-mingw\sdl2-2.28.5\x86_64-w64-mingw32\include\sdl2\sdl.h
 	"SDL_main.h"
@@ -408,9 +409,9 @@
 	"begin_code.h"
 	"close_code.h"
 
-1713088988 d:\ngtvu\c++\projectsdl2\golf\defs.h
+1714151811 d:\ngtvu\c++\projectsdl2\golf\defs.h
 
-1713113289 d:\ngtvu\c++\projectsdl2\golf\graphic.h
+1714497917 d:\ngtvu\c++\projectsdl2\golf\graphic.h
 	<bits/stdc++.h>
 	<SDL.h>
 	<SDL_image.h>
@@ -418,13 +419,13 @@
 	"defs.h"
 	"entity.h"
 
-1713004466 source:d:\ngtvu\c++\projectsdl2\golf\entity.cpp
+1714550594 source:d:\ngtvu\c++\projectsdl2\golf\entity.cpp
 	<bits/stdc++.h>
 	<SDL.h>
 	<SDL_image.h>
 	"entity.h"
 
-1713004466 d:\ngtvu\c++\projectsdl2\golf\entity.h
+1714551000 d:\ngtvu\c++\projectsdl2\golf\entity.h
 	<SDL.h>
 	<SDL_image.h>
 	"math.h"
@@ -432,14 +433,14 @@
 1711387548 d:\ngtvu\c++\projectsdl2\golf\math.h
 	<iostream>
 
-1713113658 source:d:\ngtvu\c++\projectsdl2\golf\graphic.cpp
+1713808234 source:d:\ngtvu\c++\projectsdl2\golf\graphic.cpp
 	<bits/stdc++.h>
 	<SDL.h>
 	<SDL_mixer.h>
 	"graphic.h"
 	"entity.h"
 
-1713108807 source:d:\ngtvu\c++\projectsdl2\golf\ball.cpp
+1714497930 source:d:\ngtvu\c++\projectsdl2\golf\ball.cpp
 	<bits/stdc++.h>
 	<SDL.h>
 	<SDL_image.h>
@@ -449,6 +450,7 @@
 	"math.h"
 	"Ball.h"
 	"Hole.h"
+	"graphic.h"
 
 1711384502 source:d:\ngtvu\c++\projectsdl2\golf\hole.cpp
 	"Hole.h"
@@ -462,7 +464,7 @@
 	"entity.h"
 	"math.h"
 
-1712988754 d:\ngtvu\c++\projectsdl2\golf\ball.h
+1714494442 d:\ngtvu\c++\projectsdl2\golf\ball.h
 	<bits/stdc++.h>
 	<SDL.h>
 	<SDL_image.h>
@@ -489,4 +491,26 @@
 	"math.h"
 	"Hole.h"
 	"graphic.h"
+
+1713242370 source:d:\ngtvu\c++\projectsdl2\golf\circle,h.c
+
+1713242782 source:d:\ngtvu\c++\projectsdl2\golf\circle.cpp
+	<SDL.h>
+	<SDL_image.h>
+	"Circle.h"
+
+1713242722 d:\ngtvu\c++\projectsdl2\golf\circle.h
+	<SDL.h>
+	<SDL_image.h>
+	"entity.h"
+	"math.h"
+
+1713335728 d:\ngtvu\c++\projectsdl2\golf\timer.h
+	<bits/stdc++.h>
+	<SDL.h>
+
+1713335807 source:d:\ngtvu\c++\projectsdl2\golf\timer.cpp
+	<bits/stdc++.h>
+	<SDL.h>
+	"Timer.h"
 

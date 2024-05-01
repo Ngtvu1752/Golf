@@ -10,6 +10,7 @@
 //const int WIDTH = 640, HEIGHT  = 480;
 //inline const char* Window_Title = "Hello SDL2 World";
 inline int state = 0;
+inline int cntHole = 1;
 class Graphic
 {
 public:
