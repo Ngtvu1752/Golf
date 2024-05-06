@@ -14,7 +14,7 @@ using namespace std;
 //    SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_ERROR, "%s: %s", msg, error);
 //    SDL_Quit();
 //}
-Button but, buttonNewGame;
+Button butPlay, butQuit;
 Graphic window(WIDTH, HEIGHT, Window_Title);
 Timer timer;
 Vector2f pos(200,200);
@@ -33,10 +33,12 @@ SDL_Texture* blockS = window.loadingTexture("img/block_small.png");
 SDL_Texture* logo = window.loadingTexture("img/logo.png");
 SDL_Texture* golfClub = window.loadingTexture("img/golfclub.png");
 SDL_Texture* button = window.loadingTexture("img/button.png");
-SDL_Texture* newGame = window.loadingTexture("img/newGame.png");
+SDL_Texture* quit = window.loadingTexture("img/exit.png");
+SDL_Texture* ending = window.loadingTexture("img/endscreen.png");
 
 SDL_Texture* corner = window.loadingTexture("img/block_corner_large.png");
 SDL_Texture* cir = window.loadingTexture("img/block_rotate_narrow.png");
+
 Mix_Chunk* collision = Mix_LoadWAV("music/swing.mp3");
 Mix_Chunk* holeSfx = Mix_LoadWAV("music/hihi.mp3");
 Mix_Chunk* hit = Mix_LoadWAV("music/hit.mp3");
@@ -51,7 +53,7 @@ SDL_Color white = { 255, 255, 255 };
 SDL_Color black = { 0, 0, 0 };
 int lv = 1;
 vector<Entity> wall ;
-Entity circle(Vector2f(300,300), cir);
+Entity circle(Vector2f(200,300), cir);
 Entity club(Vector2f(0,0), golfClub);
 void destroy()
 {
@@ -89,13 +91,13 @@ void rectClub()
 
     clipClub[1].x = 0;
     clipClub[1].y = 0;
-    clipClub[1].w = 16;
-    clipClub[1].h = 17;
+    clipClub[1].w = 256;
+    clipClub[1].h = 177;
 
     clipClub[2].x = 0;
-    clipClub[2].y = 17;
-    clipClub[2].w = 16;
-    clipClub[2].h = 16;
+    clipClub[2].y = 177;
+    clipClub[2].w = 256;
+    clipClub[2].h = 177;
 }
 void rectButton()
 {
@@ -111,6 +113,10 @@ void rectButton()
 }
 void loadLevel(int lv)
 {
+    if(lv > 5)
+    {
+        state = 2;
+    }
     ball.setVelocity(0,0);
     ball.setScale(1,1);
     ball.setWin(false);
@@ -128,17 +134,40 @@ void loadLevel(int lv)
     }
     if(lv == 3)
     {
+        ball.setPos(32*4,HEIGHT/2);
+        hole.setPos(64*9,HEIGHT/2);
+
+        wall.push_back(Entity(Vector2f(21*15,21*5), blockS));
+        wall.push_back(Entity(Vector2f(21*17,21*7), blockS));
+        wall.push_back(Entity(Vector2f(21*12,21*8), blockS));
+        wall.push_back(Entity(Vector2f(21*14,21*9), blockS));
+        wall.push_back(Entity(Vector2f(21*13,21*14), blockS));
+        wall.push_back(Entity(Vector2f(21*13,21*14), blockS));
+        wall.push_back(Entity(Vector2f(21*13,21*14), blockS));
+        wall.push_back(Entity(Vector2f(21*17,21*18), blockS));
+        wall.push_back(Entity(Vector2f(21*20,21*12), blockS));
+        wall.push_back(Entity(Vector2f(21*23,21*17), blockS));
+        wall.push_back(Entity(Vector2f(21*25,21*18), blockS));
+        wall.push_back(Entity(Vector2f(21*30,21*8), blockS));
+        wall.push_back(Entity(Vector2f(21*33,21*10), blockS));
+        wall.push_back(Entity(Vector2f(21*25,21*8), blockS));
+        wall.push_back(Entity(Vector2f(21*28,21*13), blockS));
+        wall.push_back(Entity(Vector2f(21*2,21*2), blockB));
+        wall.push_back(Entity(Vector2f(21*20,21*2), blockB));
+    }
+    if(lv == 4)
+    {
         ball.setPos(160, 240);
         hole.setPos(635,240);
         wall.push_back(Entity(Vector2f(380,215),blockB));
         wall.push_back(Entity(Vector2f(300,165),wallS));
         wall.push_back(Entity(Vector2f(300 + 128+1, 165),wallS));
         wall.push_back(Entity(Vector2f(300 + 128*2+1,165),wallS));
-        wall.push_back(Entity(Vector2f(300 ,305),wallS));
+        wall.push_back(Entity(Vector2f(300,305),wallS));
         wall.push_back(Entity(Vector2f(300 +128+1,305),wallS));
         wall.push_back(Entity(Vector2f(300+128*2+1,305),wallS));
     }
-    if(lv == 4)
+    if(lv == 5)
     {
         ball.setPos(240, 260);
         hole.setPos(570,100);
@@ -188,7 +217,7 @@ void update()
             {
                 mousePressed = 1;
                 mouseDown = 1;
-                club.setCurframe(clipClub[2]);
+//                club.setCurframe(clipClub[2]);
             }
             break;
         case SDL_MOUSEBUTTONUP:
@@ -196,20 +225,23 @@ void update()
             {
                 Mix_PlayChannel(-1, hit, 0);
                 mouseDown = 0;
-                club.setCurframe(clipClub[1]);
+                sprite = 1;
+//                club.setCurframe(clipClub[1]);
             }
             break;
         }
     }
-    ball.update(deltaTime, mousePressed, mouseDown, hole, wall, holeSfx, collision);
-    if(ball.getScale().x <-1 && ball.getScale().y <-1)
+    if(state == 1)
     {
-        lv++;
-        cntHole++;
-        wall.clear();
-        loadLevel(lv);
+        ball.update(deltaTime, mousePressed, mouseDown, hole, wall, holeSfx, collision, hit);
+        if(ball.getScale().x < 0)
+        {
+            lv++;
+            cntHole++;
+            wall.clear();
+            loadLevel(lv);
+        }
     }
-
 }
 const char* getTex()
 {
@@ -224,12 +256,46 @@ const char* getHole()
     string s1 = "HOLE: " + s;
     return s1.c_str();
 }
+
+const char* getTopScore()
+{
+    int topScore = 0;
+    string topScoreFile = "topscore.txt";
+    ifstream infile(topScoreFile);
+    if(infile.is_open())
+    {
+        infile >> topScore;
+        infile.close();
+    }
+    int playScore = ball.getSwings();
+    if(playScore >= topScore)
+    {
+        topScore = playScore;
+        ofstream outFile("topscore.txt");
+        if(outFile.is_open())
+        {
+            outFile<<topScore;
+            outFile.close();
+        }
+        string s = to_string(topScore);
+        string best = "BEST SWING: " + s;
+        return best.c_str();
+    }
+    else
+    {
+        string s = "You need to try harder!!!!!";
+        return s.c_str();
+    }
+
+}
+
 void show()
 {
     window.Clear();
     window.renderTexture(0,0,bg);
     window.renderEntity(hole);
-    club.setPos(ball.getPos().x - 10, ball.getPos().y - 10);
+    club.setCurframe(clipClub[sprite]);
+    club.setPos(ball.getPos().x - 64 -28 - 43 - 20, ball.getPos().y - 150 + 10);
     for(Entity& e : ball.getPoint())
     {
         window.renderEntity(e);
@@ -239,9 +305,9 @@ void show()
         window.renderEntity(f);
     }
 
-    if(lv == 3)
+    if(lv == 4)
     {
-                wall[0].setPos(wall[0].getPos().x, 215+ 20 * SDL_sin(SDL_GetTicks()*(3.14/1500)));
+        wall[0].setPos(wall[0].getPos().x, 215+ 20 * SDL_sin(SDL_GetTicks()*(3.14/1500)));
 
     }
     for(Entity& w : wall)
@@ -250,13 +316,23 @@ void show()
     }
 
     window.renderTexture(ball.getBar()[0].getPos().x, ball.getBar()[0].getPos().y, power);
-    window.renderEntity(ball);
     window.renderEntity(club);
-    if(state == 2)
+    window.renderEntity(ball);
+
+    if(state == 1)
     {
-        window.renderText(0, 16 + 3, getTex(), font24, black);
-        window.renderText(0, 16, getTex(), font24, white);
+        window.renderText(0, 3, getTex(), font24, black);
+        window.renderText(0, 0, getTex(), font24, white);
+        window.renderText(WIDTH - 100, 3, getHole(), font24, black);
         window.renderText(WIDTH - 100, 0, getHole(), font24, white);
+    }
+    else
+    {
+        window.renderTexture(0,0,ending);
+        window.renderText(200,200 +3, "YOU COMPLETED THE GAME", font48,black);
+        window.renderText(200,200, "YOU COMPLETED THE GAME", font48,white);
+        window.renderText(250, 200 + 60, getTopScore(), font32, black);
+        window.renderText(250, 200 + 60 +3, getTopScore(), font32, white);
     }
     window.display();
 }
@@ -264,58 +340,43 @@ void show()
 
 void menu()
 {
+    butQuit.setPos(WIDTH/2 - 32*3, HEIGHT/2 + 70);
+    window.Clear();
+    window.renderTexture(0,0, bg3);
+    window.renderTexture(64*2, 32 + 4 * SDL_sin(SDL_GetTicks()*(3.14/1500)), logo);
+    window.renderEntity(circle);
+    while(SDL_PollEvent(&e))
+    {
+        if(e.type == SDL_QUIT)
+        {
+            gameRunning = false;
+        }
+        butPlay.handleEvent(&e);
+        if(butPlay.getButton() == BUTTON_SPRITE_MOUSE_DOWN)
+        {
+            if(e.type == SDL_MOUSEBUTTONDOWN)
+            {
+                state = 1;
+            }
+        }
+        butQuit.handleEvent(&e);
+        if(butQuit.getButton() == BUTTON_SPRITE_MOUSE_DOWN)
+        {
+            if(e.type == SDL_MOUSEBUTTONDOWN)
+            {
+                gameRunning = false;
+            }
+        }
+    }
+    window.render(button,WIDTH/2 - 32*3,HEIGHT/2,&clip[butPlay.getButton()]);
+    window.render(quit,WIDTH/2 - 32*3,HEIGHT/2 + 70,&clip[butQuit.getButton()]);
+    window.display();
 
-    if(state == 0)
-    {
-        window.Clear();
-        window.renderTexture(0,0, bg3);
-        window.renderTexture(64*2, 32 + 4 * SDL_sin(SDL_GetTicks()*(3.14/1500)), logo);
-        window.renderEntity(circle);
-        while(SDL_PollEvent(&e))
-        {
-            if(e.type == SDL_QUIT)
-            {
-                gameRunning = false;
-            }
-            but.handleEvent(&e);
-            if(but.getButton() == BUTTON_SPRITE_MOUSE_DOWN)
-            {
-                if(e.type == SDL_MOUSEBUTTONDOWN)
-                {
-                    state = 1;
-                }
-            }
-        }
-        window.render(button,WIDTH/2 - 32*3,HEIGHT/2,&clip[but.getButton()]);
-        window.display();
-    }
-    if( state == 1)
-    {
-        window.Clear();
-        window.renderTexture(0,0,bg3);
-        while(SDL_PollEvent(&e))
-        {
-            if(e.type == SDL_QUIT)
-            {
-                gameRunning = false;
-            }
-            buttonNewGame.handleEvent(&e);
-            if(buttonNewGame.getButton() == BUTTON_SPRITE_MOUSE_DOWN)
-            {
-                if(e.type == SDL_MOUSEBUTTONDOWN)
-                {
-                    state = 2;
-                }
-            }
-        }
-        window.render(newGame,WIDTH/2 - 32*3,HEIGHT/2,&clip[buttonNewGame.getButton()]);
-        window.display();
-    }
 
 }
 void game()
 {
-    if(state <= 1)
+    if(state == 0)
     {
         menu();
     }
@@ -347,6 +408,7 @@ int main( int argc, char* args[])
         if(ticks >= 1)
         {
             degrees += 4;
+            if(degrees >=360) degrees = 0;
             circle.setAngle(degrees);
             ball.setAngle(degrees);
             timer.pause();

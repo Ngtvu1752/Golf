@@ -38,7 +38,7 @@ void Ball::setWin(bool p_win)
     win = p_win;
 }
 
-void Ball::update(double deltaTime, bool mousePressed, bool mouseDown, Hole hole,vector<Entity>wall, Mix_Chunk* holeSfx, Mix_Chunk* collision)
+void Ball::update(double deltaTime, bool mousePressed, bool mouseDown, Hole hole,vector<Entity>wall, Mix_Chunk* holeSfx, Mix_Chunk* collision, Mix_Chunk* hit)
 {
     target.x = hole.getPos().x ;
     target.y = hole.getPos().y + 3;
@@ -70,24 +70,33 @@ void Ball::update(double deltaTime, bool mousePressed, bool mouseDown, Hole hole
         setWin(true);
         target.x = hole.getPos().x ;
         target.y = hole.getPos().y + 3;
-        swings++;
+
     }
     if(mousePressed &&canMove)
     {
-        swings++;
+        Mix_PlayChannel(-1,hit,0);
+//        swingFx = 0;
         int mouseX = 0;
         int mouseY = 0;
         SDL_GetMouseState(&mouseX, &mouseY);
+//        cout<<mouseX<<' '<<mouseY<<'\n';
         setInitialMousePos(mouseX, mouseY);
     }
     if( mouseDown && canMove )
     {
+        sprite = 2;
         int mouseX = 0;
         int mouseY = 0;
         SDL_GetMouseState(&mouseX, &mouseY);
         setVelocity((mouseX - getInitialMousePos().x)/-150, (mouseY - getInitialMousePos().y)/-150);
         setLauchedVelocity((mouseX - getInitialMousePos().x)/-150, (mouseY - getInitialMousePos().y)/-150);
         velocity1D = SDL_sqrt(getVelocity().x * getVelocity().x + getVelocity().y * getVelocity().y);
+        if(velocity1D == 0)
+        {
+            return;
+        }
+        swingFx = 0;
+
         lauchedVelocity1D = velocity1D;
 
         point[0].setPos(getPos().x , getPos().y + 8 - 32 );
@@ -105,9 +114,18 @@ void Ball::update(double deltaTime, bool mousePressed, bool mouseDown, Hole hole
             lauchedVelocity1D = 1;
         }
         forceBar[1].setScale(1, velocity1D);
+
     }
     else
     {
+        if(!swingFx)
+        {
+            Mix_PlayChannel(-1,collision,0);
+            swingFx = true;
+            sprite = 1;
+            swings++;
+        }
+
         canMove = 0;
 //        Mix_PlayChannel(-1,hit,0);
         point[0].setPos(-50,-50);
@@ -116,6 +134,7 @@ void Ball::update(double deltaTime, bool mousePressed, bool mouseDown, Hole hole
         setPos(getPos().x + getVelocity().x * deltaTime, getPos().y + getVelocity().y*deltaTime);
         if(getVelocity().x > 0.001 || getVelocity().x < -0.001 || getVelocity().y > 0.001 || getVelocity().y < -0.001)
         {
+
             if(velocity1D > 0)
             {
                 velocity1D -= friction*deltaTime;

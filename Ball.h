@@ -40,7 +40,7 @@ public:
     void setVelocity(float x, float y);
     void setLauchedVelocity(float x, float y);
     void setInitialMousePos(float x, float y);
-    void update(double deltaTime, bool mousePressed, bool mouseDown, Hole hole, vector<Entity> wall, Mix_Chunk* holeSfx, Mix_Chunk* collision);
+    void update(double deltaTime, bool mousePressed, bool mouseDown, Hole hole, vector<Entity> wall, Mix_Chunk* holeSfx, Mix_Chunk* collision, Mix_Chunk* hit);
 private:
     Vector2f velocity;
     Vector2f lauchedVelocity;
@@ -54,6 +54,7 @@ private:
     bool canMove = 1;
     int swings = 0;
     bool win = false;
+    bool swingFx = true;
     vector<Entity> point; //optimise
     vector<Entity> forceBar;
 };
