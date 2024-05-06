@@ -19,4 +19,5 @@
    - Khi thả chuột, ta sẽ cập nhật vị trí mới của bóng theo Ox và Oy theo công thức: $$ Pos.X ban đầu = Pos.X ban đầu + V_x * deltatime. (với deltatime là thời gian mà vật chuyển động trong thời gian thực).
    - Công thức tỉ lệ của vận tốc thành phần và vận tốc của vật như sau:  $$\frac{V_x}{V_ox} = \frac{V_y}{V_oy} = \frac{V}{Vo} $$
    - Ta sẽ có một hằng số gia tốc để giảm vận tốc của quả bóng theo thời gian: $$\ V = V - a*t $$.
+   - Việc kiểm tra va chạm của quả bóng là khá đơn giản, ta chỉ cẩn kiểm tra xem quả bóng va chạm theo phương X hay phương Y khi đó ta sẽ đổi hướng theo phương X hay phương Y của quả bóng.
 ### P/s: ý tưởng của game được dựa trên "polymars.itch.io/twini-golf"
