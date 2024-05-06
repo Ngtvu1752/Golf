@@ -18,5 +18,5 @@
    - Ta sẽ tính khoảng cách của chuột khi nhấn giữ và khi thả bằng công thức:  $$M = \sqrt{(X - Xo)^2 + (Y - Yo)^2}$$. Khi đó M sẽ là vận tốc của bóng, 
    - Khi thả chuột, ta sẽ cập nhật vị trí mới của bóng theo Ox và Oy theo công thức: $$ Pos.X ban đầu = Pos.X ban đầu + V_x * deltatime. (với deltatime là thời gian mà vật chuyển động trong thời gian thực).
    - Công thức tỉ lệ của vận tốc thành phần và vận tốc của vật như sau:  $$\frac{V_x}{V_ox} = \frac{V_y}{V_oy} = \frac{V}{Vo} $$
-   - Ta sẽ có một hằng số gia tốc để giảm vận tốc của quả bóng theo thời gian: $$ V = V - a*t $$.
+   - Ta sẽ có một hằng số gia tốc để giảm vận tốc của quả bóng theo thời gian: $$\ V = V - a*t $$.
 ### P/s: ý tưởng của game được dựa trên "polymars.itch.io/twini-golf"
