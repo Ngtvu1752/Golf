@@ -13,4 +13,7 @@
 - Điều chỉnh hướng chuột để bóng đi chính xác nhất
 ## Algorithsms
 - Game sử dụng những công thức vật lý đối với vật chuyển động trong không gian Oxy để cho vật có thể di chuyển được
+- Chúng ta lấy vận tốc của vật như sau:
+   - Ta sẽ tính khoảng cách của chuột khi nhấn giữ và khi thả bằng công thức  M = sqrt((X - Xo)^2 + (Y - Yo)^2);
+- 
 ### P/s: ý tưởng của game được dựa trên "polymars.itch.io/twini-golf"
