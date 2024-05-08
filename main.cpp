@@ -4,8 +4,6 @@
 #include "Button.h"
 #include "Timer.h"
 using namespace std;
-
-
 Graphic window(WIDTH, HEIGHT, Window_Title);
 Timer timer;
 Vector2f pos(200,200);
@@ -69,6 +67,13 @@ void destroy()
     circle.free();
     club.free();
     ball.free();
+    TTF_CloseFont(font24);
+    TTF_CloseFont(font32);
+    TTF_CloseFont(font48);
+    Mix_FreeChunk(collision);
+    Mix_FreeChunk(hit);
+    Mix_FreeChunk(click);
+    Mix_FreeChunk(holeSfx);
 }
 SDL_Rect clip[BUTTON_SPRITE_TOTAL];
 SDL_Rect clipClub[3];

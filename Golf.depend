@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1715152536 source:d:\ngtvu\c++\projectsdl2\golf\main.cpp
+1715153049 source:d:\ngtvu\c++\projectsdl2\golf\main.cpp
 	<bits/stdc++.h>
 	"graphic.h"
 	"Ball.h"
@@ -435,7 +435,7 @@
 	"graphic.h"
 	"entity.h"
 
-1715151551 source:d:\ngtvu\c++\projectsdl2\golf\ball.cpp
+1715152850 source:d:\ngtvu\c++\projectsdl2\golf\ball.cpp
 	<bits/stdc++.h>
 	"Ball.h"
 	"graphic.h"

@@ -132,7 +132,6 @@ void Ball::update(double deltaTime, bool mousePressed, bool mouseDown, Hole *hol
         setPos(getPos().x + getVelocity().x * deltaTime, getPos().y + getVelocity().y*deltaTime);
         if(getVelocity().x > 0.001 || getVelocity().x < -0.001 || getVelocity().y > 0.001 || getVelocity().y < -0.001)
         {
-
             if(velocity1D > 0)
             {
                 velocity1D -= friction*deltaTime;
