@@ -1,13 +1,5 @@
 #include<bits/stdc++.h>
-#include<SDL.h>
-#include<SDL_image.h>
-#include<SDL_mixer.h>
-
-#include "defs.h"
-#include "entity.h"
-#include "math.h"
 #include "Ball.h"
-#include "Hole.h"
 #include "graphic.h"
 
 using namespace std;

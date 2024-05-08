@@ -1,12 +1,11 @@
 # depslib dependency file v1.0
-1715149040 source:d:\ngtvu\c++\projectsdl2\golf\main.cpp
+1715150727 source:d:\ngtvu\c++\projectsdl2\golf\main.cpp
 	<bits/stdc++.h>
 	<SDL.h>
 	<SDL_image.h>
 	<SDL_mixer.h>
 	"graphic.h"
 	"Ball.h"
-	"Hole.h"
 	"Button.h"
 	"Timer.h"
 
@@ -411,18 +410,17 @@
 
 1714964886 d:\ngtvu\c++\projectsdl2\golf\defs.h
 
-1715148026 d:\ngtvu\c++\projectsdl2\golf\graphic.h
+1715150863 d:\ngtvu\c++\projectsdl2\golf\graphic.h
 	<bits/stdc++.h>
 	<SDL.h>
 	<SDL_image.h>
 	<SDL_ttf.h>
+	<SDL_mixer.h>
 	"defs.h"
 	"entity.h"
 
-1715146757 source:d:\ngtvu\c++\projectsdl2\golf\entity.cpp
+1715150907 source:d:\ngtvu\c++\projectsdl2\golf\entity.cpp
 	<bits/stdc++.h>
-	<SDL.h>
-	<SDL_image.h>
 	"entity.h"
 
 1715146749 d:\ngtvu\c++\projectsdl2\golf\entity.h
@@ -440,23 +438,13 @@
 	"graphic.h"
 	"entity.h"
 
-1715148923 source:d:\ngtvu\c++\projectsdl2\golf\ball.cpp
+1715150930 source:d:\ngtvu\c++\projectsdl2\golf\ball.cpp
 	<bits/stdc++.h>
-	<SDL.h>
-	<SDL_image.h>
-	<SDL_mixer.h>
-	"defs.h"
-	"entity.h"
-	"math.h"
 	"Ball.h"
-	"Hole.h"
 	"graphic.h"
 
-1711384502 source:d:\ngtvu\c++\projectsdl2\golf\hole.cpp
+1715150762 source:d:\ngtvu\c++\projectsdl2\golf\hole.cpp
 	"Hole.h"
-	"entity.h"
-	"math.h"
-	<SDL.h>
 
 1714964886 d:\ngtvu\c++\projectsdl2\golf\hole.h
 	<SDL.h>
@@ -464,32 +452,19 @@
 	"entity.h"
 	"math.h"
 
-1715148601 d:\ngtvu\c++\projectsdl2\golf\ball.h
+1715150655 d:\ngtvu\c++\projectsdl2\golf\ball.h
 	<bits/stdc++.h>
-	<SDL.h>
-	<SDL_image.h>
 	<SDL_mixer.h>
 	"entity.h"
-	"math.h"
 	"Hole.h"
 
-1714964886 source:d:\ngtvu\c++\projectsdl2\golf\button.cpp
+1715150863 source:d:\ngtvu\c++\projectsdl2\golf\button.cpp
 	<bits/stdc++.h>
-	<SDL.h>
-	<SDL_image.h>
-	<SDL_mixer.h>
-	"math.h"
 	"graphic.h"
 	"Button.h"
 
-1715005923 d:\ngtvu\c++\projectsdl2\golf\button.h
+1715150697 d:\ngtvu\c++\projectsdl2\golf\button.h
 	<bits/stdc++.h>
-	<SDL.h>
-	<SDL_image.h>
-	<SDL_mixer.h>
-	"entity.h"
-	"math.h"
-	"Hole.h"
 	"graphic.h"
 
 1713242370 source:d:\ngtvu\c++\projectsdl2\golf\circle,h.c

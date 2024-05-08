@@ -1,19 +1,10 @@
-# include<bits/stdc++.h>
-#include<SDL.h>
-#include<SDL_image.h>
-#include<SDL_mixer.h>
+#include<bits/stdc++.h>
 #include "graphic.h"
 #include "Ball.h"
-#include "Hole.h"
 #include "Button.h"
 #include "Timer.h"
 using namespace std;
 
-//void logErrorAndExit(const char*msg, const char* error)
-//{
-//    SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_ERROR, "%s: %s", msg, error);
-//    SDL_Quit();
-//}
 Button butPlay, butQuit;
 Graphic window(WIDTH, HEIGHT, Window_Title);
 Timer timer;
@@ -423,10 +414,7 @@ int main( int argc, char* args[])
             timer.start();
         }
     }
-    SDL_DestroyTexture(ballTex);
-    ballTex = NULL;
-    SDL_DestroyTexture(bg3);
-    bg3 = NULL;
+    destroy();
     window.quitSDL();
     return 0;
 }

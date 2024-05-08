@@ -1,10 +1,5 @@
 #pragma once
 #include<bits/stdc++.h>
-#include<SDL.h>
-#include<SDL_image.h>
-#include<SDL_mixer.h>
-
-#include "math.h"
 #include "graphic.h"
 #include "Button.h"
 using namespace std;
