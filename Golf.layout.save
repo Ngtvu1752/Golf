@@ -2,85 +2,85 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="timer.cpp" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="84" topLine="19" />
-		</Cursor>
-	</File>
-	<File name="entity.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="849" topLine="5" />
-		</Cursor>
-	</File>
 	<File name="main.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="10381" topLine="336" />
+			<Cursor1 position="6546" topLine="69" />
 		</Cursor>
 	</File>
-	<File name="Timer.h" open="1" top="0" tabpos="14" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="defs.h" open="1" top="0" tabpos="15" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="238" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="Timer.h" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="202" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="hole.cpp" open="1" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="entity.h" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="687" topLine="7" />
-		</Cursor>
-	</File>
-	<File name="Graphic.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="-2" zoom_2="0">
+	<File name="Graphic.cpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="-2" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="2799" topLine="69" />
 		</Cursor>
 	</File>
-	<File name="Ball.h" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="-2" zoom_2="0">
+	<File name="graphic.h" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="678" topLine="22" />
+			<Cursor1 position="354" topLine="2" />
 		</Cursor>
 	</File>
-	<File name="math.h" open="1" top="0" tabpos="15" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="hole.cpp" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="151" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="Button.h" open="1" top="0" tabpos="14" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="641" topLine="1" />
+		</Cursor>
+	</File>
+	<File name="math.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="114" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="Hole.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="entity.h" open="1" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="0" topLine="0" />
+			<Cursor1 position="73" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="button.cpp" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="entity.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="849" topLine="5" />
+		</Cursor>
+	</File>
+	<File name="timer.cpp" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="84" topLine="19" />
+		</Cursor>
+	</File>
+	<File name="Ball.h" open="1" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="-3" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1075" topLine="20" />
+		</Cursor>
+	</File>
+	<File name="button.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="300" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="ball.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3341" topLine="34" />
-		</Cursor>
-	</File>
-	<File name="Button.h" open="1" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="142" topLine="1" />
-		</Cursor>
-	</File>
-	<File name="defs.h" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="173" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="Circle.h" open="1" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Circle.h" open="1" top="0" tabpos="16" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="94" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="graphic.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="ball.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="562" topLine="1" />
+			<Cursor1 position="2426" topLine="67" />
 		</Cursor>
 	</File>
-	<EditorTabsLayout layout="082af5a06638e466000028bb00000002=*0;Golf:main.cpp,1;Golf:ball.cpp,2;Golf:button.cpp,3;Golf:entity.cpp,4;Golf:Graphic.cpp,5;Golf:timer.cpp,15;Golf:hole.cpp|0f3ce5906638e47d0000842700000003=13;Golf:math.h,+12;Golf:Hole.h,11;Golf:graphic.h,14;Golf:Timer.h,10;Golf:entity.h,7;Golf:Ball.h,6;Golf:Button.h,9;Golf:defs.h,8;Golf:Circle.h@layout2|name=dummy;caption=;state=2098174;dir=3;layer=0;row=0;pos=0;prop=100000;bestw=225;besth=225;minw=225;minh=225;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=082af5a06638e466000028bb00000002;caption=;state=2098172;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=250;besth=250;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=0f3ce5906638e47d0000842700000003;caption=;state=2098172;dir=2;layer=1;row=0;pos=0;prop=100000;bestw=855;besth=360;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|dock_size(5,0,0)=252|dock_size(2,1,0)=857|" />
+	<File name="Hole.h" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="174" topLine="0" />
+		</Cursor>
+	</File>
+	<EditorTabsLayout layout="0884c9f0663b0079003a8b9c00000002=*0;Golf:main.cpp,1;Golf:ball.cpp,2;Golf:button.cpp,3;Golf:entity.cpp,4;Golf:Graphic.cpp,5;Golf:timer.cpp,6;Golf:hole.cpp|0884ef70663b0079003a8ba700000003=7;Golf:math.h,8;Golf:Hole.h,9;Golf:graphic.h,10;Golf:Timer.h,11;Golf:entity.h,12;Golf:Ball.h,+13;Golf:Button.h,14;Golf:defs.h,15;Golf:Circle.h@layout2|name=dummy;caption=;state=2098174;dir=3;layer=0;row=0;pos=0;prop=100000;bestw=225;besth=225;minw=225;minh=225;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=0884c9f0663b0079003a8b9c00000002;caption=;state=2098172;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=250;besth=250;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=0884ef70663b0079003a8ba700000003;caption=;state=2098172;dir=2;layer=1;row=0;pos=0;prop=100000;bestw=855;besth=360;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|dock_size(5,0,0)=252|dock_size(2,1,0)=857|" />
 </CodeBlocks_layout_file>

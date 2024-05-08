@@ -35,13 +35,11 @@ SDL_Texture* golfClub = window.loadingTexture("img/golfclub.png");
 SDL_Texture* button = window.loadingTexture("img/button.png");
 SDL_Texture* quit = window.loadingTexture("img/exit.png");
 SDL_Texture* ending = window.loadingTexture("img/endscreen.png");
-
-SDL_Texture* corner = window.loadingTexture("img/block_corner_large.png");
 SDL_Texture* cir = window.loadingTexture("img/block_rotate_narrow.png");
 
-Mix_Chunk* collision = Mix_LoadWAV("music/swing.mp3");
-Mix_Chunk* holeSfx = Mix_LoadWAV("music/hihi.mp3");
-Mix_Chunk* hit = Mix_LoadWAV("music/hit.mp3");
+Mix_Chunk* collision = window.loadSound("music/swing.mp3");
+Mix_Chunk* holeSfx = window.loadSound("music/hihi.mp3");
+Mix_Chunk* hit = window.loadSound("music/hit.mp3");
 
 Ball ball = Ball(pos, ballTex, pointTex, powerBE, powerFE);
 Hole hole(Vector2f(300,300), holeTex);
@@ -77,8 +75,6 @@ void destroy()
     pointTex = NULL;
     SDL_DestroyTexture(holeTex);
     holeTex= NULL;
-    SDL_DestroyTexture(bg3);
-    bg3= NULL;
 }
 SDL_Rect clip[BUTTON_SPRITE_TOTAL];
 SDL_Rect clipClub[3];
@@ -233,7 +229,7 @@ void update()
     }
     if(state == 1)
     {
-        ball.update(deltaTime, mousePressed, mouseDown, hole, wall, holeSfx, collision, hit);
+        ball.update(deltaTime, mousePressed, mouseDown, &hole, &wall, holeSfx, collision, hit);
         if(ball.getScale().x < 0)
         {
             lv++;
@@ -268,7 +264,7 @@ const char* getTopScore()
         infile.close();
     }
     int playScore = ball.getSwings();
-    if(playScore >= topScore)
+    if(playScore <= topScore)
     {
         topScore = playScore;
         ofstream outFile("topscore.txt");
@@ -291,34 +287,34 @@ const char* getTopScore()
 
 void show()
 {
+    SDL_DestroyTexture(bg3);
+    bg3= NULL;
+    SDL_DestroyTexture(logo);
+    logo= NULL;
     window.Clear();
     window.renderTexture(0,0,bg);
     window.renderEntity(hole);
-    club.setCurframe(clipClub[sprite]);
-    club.setPos(ball.getPos().x - 64 -28 - 43 - 20, ball.getPos().y - 150 + 10);
+    club.setCurframe(&clipClub[sprite]);
     for(Entity& e : ball.getPoint())
     {
         window.renderEntity(e);
-    }
-    for(Entity& f : ball.getBar())
-    {
-        window.renderEntity(f);
-    }
-
-    if(lv == 4)
-    {
-        wall[0].setPos(wall[0].getPos().x, 215+ 20 * SDL_sin(SDL_GetTicks()*(3.14/1500)));
-
     }
     for(Entity& w : wall)
     {
         window.renderEntity(w);
     }
+    for(Entity& f : ball.getBar())
+    {
+        window.renderEntity(f);
+    }
+    if(lv == 4)
+    {
+        wall[0].setPos(wall[0].getPos().x, 215+ 20 * SDL_sin(SDL_GetTicks()*(3.14/1500)));
 
+    }
     window.renderTexture(ball.getBar()[0].getPos().x, ball.getBar()[0].getPos().y, power);
     window.renderEntity(club);
     window.renderEntity(ball);
-
     if(state == 1)
     {
         window.renderText(0, 3, getTex(), font24, black);
@@ -333,10 +329,27 @@ void show()
         window.renderText(200,200, "YOU COMPLETED THE GAME", font48,white);
         window.renderText(250, 200 + 60, getTopScore(), font32, black);
         window.renderText(250, 200 + 60 +3, getTopScore(), font32, white);
+        butQuit.setPos(WIDTH/2 - 32*3, 280);
+        while(SDL_PollEvent(&e))
+        {
+            if(e.type == SDL_QUIT)
+            {
+                gameRunning = false;
+            }
+            butQuit.handleEvent(&e);
+            if(butQuit.getButton() == BUTTON_SPRITE_MOUSE_DOWN)
+            {
+                if(e.type == SDL_MOUSEBUTTONDOWN)
+                {
+                    gameRunning = false;
+                }
+            }
+        }
+        window.render(quit,WIDTH/2 - 32*3,HEIGHT/2 + 70,&clip[butQuit.getButton()]);
     }
     window.display();
+    club.setPos(ball.getPos().x - 64 -28 - 43 - 20, ball.getPos().y - 150 + 10);
 }
-
 
 void menu()
 {
@@ -371,8 +384,6 @@ void menu()
     window.render(button,WIDTH/2 - 32*3,HEIGHT/2,&clip[butPlay.getButton()]);
     window.render(quit,WIDTH/2 - 32*3,HEIGHT/2 + 70,&clip[butQuit.getButton()]);
     window.display();
-
-
 }
 void game()
 {
@@ -391,15 +402,11 @@ int main( int argc, char* args[])
 {
     rectButton();
     rectClub();
-    club.setCurframe(clipClub[0]);
+    club.setCurframe(&clipClub[0]);
     if(holeSfx == NULL)
     {
         cout<<11111;
     }
-//    Button.setCurframe(0,0, Button.getCurrFrame().w, Button.getCurrFrame().h/2);
-//    window.renderEntity(Button);
-//    window.display();
-//    keyPress();
     loadLevel(lv);
     timer.start();
     while(gameRunning)

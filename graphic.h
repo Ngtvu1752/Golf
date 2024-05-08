@@ -18,6 +18,7 @@ public:
     Graphic(int w, int h, const char* filename);
     SDL_Texture* loadingTexture(const char* filename);
     TTF_Font* loadFont(const char* filename, int size);
+    Mix_Chunk* loadSound(const char* filename);
     void quitSDL();
     void Clear();
     void render(SDL_Texture* p_tex, int x, int y, SDL_Rect* clip);

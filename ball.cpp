@@ -38,10 +38,10 @@ void Ball::setWin(bool p_win)
     win = p_win;
 }
 
-void Ball::update(double deltaTime, bool mousePressed, bool mouseDown, Hole hole,vector<Entity>wall, Mix_Chunk* holeSfx, Mix_Chunk* collision, Mix_Chunk* hit)
+void Ball::update(double deltaTime, bool mousePressed, bool mouseDown, Hole *hole,vector<Entity>*wall, Mix_Chunk* holeSfx, Mix_Chunk* collision, Mix_Chunk* hit)
 {
-    target.x = hole.getPos().x ;
-    target.y = hole.getPos().y + 3;
+    target.x = hole->getPos().x ;
+    target.y = hole->getPos().y + 3;
     if(win)
     {
         if(getPos().x < target.x)
@@ -64,18 +64,19 @@ void Ball::update(double deltaTime, bool mousePressed, bool mouseDown, Hole hole
         setScale(getScale().x - 0.001*deltaTime, getScale().y - 0.001*deltaTime);
         return;
     }
-    if(getPos().x +4 > hole.getPos().x && getPos().x < hole.getPos().x + 4 && getPos().y+4 >hole.getPos().y && getPos().y < hole.getPos().y+4 )
+    if(getPos().x +4 > hole->getPos().x && getPos().x < hole->getPos().x + 4 && getPos().y+4 >hole->getPos().y && getPos().y < hole->getPos().y+4 )
     {
         Mix_PlayChannel(-1, holeSfx, 0);
         setWin(true);
-        target.x = hole.getPos().x ;
-        target.y = hole.getPos().y + 3;
+        target.x = hole->getPos().x ;
+        target.y = hole->getPos().y + 3;
 
     }
     if(mousePressed &&canMove)
     {
         Mix_PlayChannel(-1,hit,0);
 //        swingFx = 0;
+        sprite = 2;
         int mouseX = 0;
         int mouseY = 0;
         SDL_GetMouseState(&mouseX, &mouseY);
@@ -84,7 +85,7 @@ void Ball::update(double deltaTime, bool mousePressed, bool mouseDown, Hole hole
     }
     if( mouseDown && canMove )
     {
-        sprite = 2;
+
         int mouseX = 0;
         int mouseY = 0;
         SDL_GetMouseState(&mouseX, &mouseY);
@@ -179,7 +180,7 @@ void Ball::update(double deltaTime, bool mousePressed, bool mouseDown, Hole hole
             dirY = 1;
         }
 
-        for(Entity& e : wall)
+        for(Entity& e : *wall)
         {
             float nX =  getPos().x + getVelocity().x*deltaTime;
             float nY = getPos().y;
@@ -202,6 +203,7 @@ void Ball::update(double deltaTime, bool mousePressed, bool mouseDown, Hole hole
             }
 
         }
+
 
     }
 }

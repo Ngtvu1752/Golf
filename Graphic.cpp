@@ -40,7 +40,6 @@ Graphic::Graphic(int w, int h, const char* filename)
                         TTF_GetError());
     }
     Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048);
-
     if (renderer == NULL) logErrorAndExit("CreateRenderer", SDL_GetError());
 
     SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
@@ -55,6 +54,17 @@ SDL_Texture* Graphic::loadingTexture(const char* filename)
         cout << "Failed to load texture. Error: " << SDL_GetError() <<endl;
 
     return texture;
+}
+Mix_Chunk* Graphic::loadSound(const char* filename)
+{
+        Mix_Chunk* gChunk = Mix_LoadWAV(filename);
+        if (gChunk == nullptr)
+        {
+            SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION,
+                           SDL_LOG_PRIORITY_ERROR,
+                           "Could not load sound! SDL_mixer Error: %s", Mix_GetError());
+        }
+
 }
 TTF_Font* Graphic::loadFont(const char* filename, int size)
 {
@@ -119,7 +129,7 @@ void Graphic::renderTexture( int x, int y, SDL_Texture* texture)
 void Graphic::renderText(int x, int y, const char* text, TTF_Font* font, SDL_Color textColor )
 {
     SDL_Surface* surfaceMessage = TTF_RenderText_Blended( font, text, textColor);
-    SDL_Texture* message = SDL_CreateTextureFromSurface(renderer , surfaceMessage);
+    SDL_Texture* message = SDL_CreateTextureFromSurface(renderer, surfaceMessage);
 
     SDL_Rect src;
     src.x = 0;

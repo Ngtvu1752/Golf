@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1715009943 source:d:\ngtvu\c++\projectsdl2\golf\main.cpp
+1715149040 source:d:\ngtvu\c++\projectsdl2\golf\main.cpp
 	<bits/stdc++.h>
 	<SDL.h>
 	<SDL_image.h>
@@ -411,7 +411,7 @@
 
 1714964886 d:\ngtvu\c++\projectsdl2\golf\defs.h
 
-1715006276 d:\ngtvu\c++\projectsdl2\golf\graphic.h
+1715148026 d:\ngtvu\c++\projectsdl2\golf\graphic.h
 	<bits/stdc++.h>
 	<SDL.h>
 	<SDL_image.h>
@@ -419,13 +419,13 @@
 	"defs.h"
 	"entity.h"
 
-1714964896 source:d:\ngtvu\c++\projectsdl2\golf\entity.cpp
+1715146757 source:d:\ngtvu\c++\projectsdl2\golf\entity.cpp
 	<bits/stdc++.h>
 	<SDL.h>
 	<SDL_image.h>
 	"entity.h"
 
-1714964886 d:\ngtvu\c++\projectsdl2\golf\entity.h
+1715146749 d:\ngtvu\c++\projectsdl2\golf\entity.h
 	<SDL.h>
 	<SDL_image.h>
 	"math.h"
@@ -433,14 +433,14 @@
 1714964886 d:\ngtvu\c++\projectsdl2\golf\math.h
 	<iostream>
 
-1714964896 source:d:\ngtvu\c++\projectsdl2\golf\graphic.cpp
+1715148056 source:d:\ngtvu\c++\projectsdl2\golf\graphic.cpp
 	<bits/stdc++.h>
 	<SDL.h>
 	<SDL_mixer.h>
 	"graphic.h"
 	"entity.h"
 
-1715009934 source:d:\ngtvu\c++\projectsdl2\golf\ball.cpp
+1715148923 source:d:\ngtvu\c++\projectsdl2\golf\ball.cpp
 	<bits/stdc++.h>
 	<SDL.h>
 	<SDL_image.h>
@@ -464,7 +464,7 @@
 	"entity.h"
 	"math.h"
 
-1715009928 d:\ngtvu\c++\projectsdl2\golf\ball.h
+1715148601 d:\ngtvu\c++\projectsdl2\golf\ball.h
 	<bits/stdc++.h>
 	<SDL.h>
 	<SDL_image.h>
@@ -505,7 +505,7 @@
 	"entity.h"
 	"math.h"
 
-1714964886 d:\ngtvu\c++\projectsdl2\golf\timer.h
+1715147523 d:\ngtvu\c++\projectsdl2\golf\timer.h
 	<bits/stdc++.h>
 	<SDL.h>
 
