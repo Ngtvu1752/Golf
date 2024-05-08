@@ -5,7 +5,7 @@
 #include "Timer.h"
 using namespace std;
 
-Button butPlay, butQuit;
+
 Graphic window(WIDTH, HEIGHT, Window_Title);
 Timer timer;
 Vector2f pos(200,200);
@@ -31,10 +31,10 @@ SDL_Texture* cir = window.loadingTexture("img/block_rotate_narrow.png");
 Mix_Chunk* collision = window.loadSound("music/swing.mp3");
 Mix_Chunk* holeSfx = window.loadSound("music/hihi.mp3");
 Mix_Chunk* hit = window.loadSound("music/hit.mp3");
-
+Mix_Chunk* click = window.loadSound("music/pick.mp3");
 Ball ball = Ball(pos, ballTex, pointTex, powerBE, powerFE);
 Hole hole(Vector2f(300,300), holeTex);
-
+Button butPlay, butQuit;
 TTF_Font* font32 = window.loadFont("font.ttf", 32);
 TTF_Font* font48 = window.loadFont("font.ttf", 48);
 TTF_Font* font24 = window.loadFont("font.ttf", 24);
@@ -66,6 +66,9 @@ void destroy()
     pointTex = NULL;
     SDL_DestroyTexture(holeTex);
     holeTex= NULL;
+    circle.free();
+    club.free();
+    ball.free();
 }
 SDL_Rect clip[BUTTON_SPRITE_TOTAL];
 SDL_Rect clipClub[3];
@@ -160,23 +163,6 @@ void loadLevel(int lv)
         hole.setPos(570,100);
         wall.push_back(Entity(Vector2f(324,111),wallS));
         wall.push_back(Entity(Vector2f(400,238),wallS));
-    }
-}
-void keyPress()
-{
-    SDL_Event e;
-    while(true)
-    {
-        while(SDL_PollEvent(&e))
-        {
-            int x, y;
-            SDL_GetMouseState(&x,&y);
-//            cout<<x<<' '<<y<<'\n';
-            if(e.type == SDL_QUIT || e.type == SDL_KEYDOWN)
-                return;
-            SDL_Delay(100);
-        }
-
     }
 }
 Uint64 curTick = SDL_GetPerformanceCounter();
@@ -332,6 +318,7 @@ void show()
             {
                 if(e.type == SDL_MOUSEBUTTONDOWN)
                 {
+                    Mix_PlayChannel(-1,click,0);
                     gameRunning = false;
                 }
             }
@@ -360,6 +347,8 @@ void menu()
         {
             if(e.type == SDL_MOUSEBUTTONDOWN)
             {
+
+                Mix_PlayChannel(-1,click,0);SDL_Delay(1000);
                 state = 1;
             }
         }
@@ -368,6 +357,7 @@ void menu()
         {
             if(e.type == SDL_MOUSEBUTTONDOWN)
             {
+                Mix_PlayChannel(-1,click,0);
                 gameRunning = false;
             }
         }
@@ -394,10 +384,6 @@ int main( int argc, char* args[])
     rectButton();
     rectClub();
     club.setCurframe(&clipClub[0]);
-    if(holeSfx == NULL)
-    {
-        cout<<11111;
-    }
     loadLevel(lv);
     timer.start();
     while(gameRunning)

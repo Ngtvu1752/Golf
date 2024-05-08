@@ -10,6 +10,11 @@ Ball::Ball(Vector2f p_pos, SDL_Texture* p_tex,SDL_Texture* p_point, SDL_Texture*
     forceBar.push_back(Entity(Vector2f(-50,-50),powerBE));
     forceBar.push_back(Entity(Vector2f(-50,-50), powerFE));
 }
+void Ball::free()
+{
+    point.clear();
+    forceBar.clear();
+}
 void Ball::setVelocity(float x, float y)
 {
     velocity.x = x;

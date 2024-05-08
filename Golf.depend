@@ -1,9 +1,6 @@
 # depslib dependency file v1.0
-1715150727 source:d:\ngtvu\c++\projectsdl2\golf\main.cpp
+1715152536 source:d:\ngtvu\c++\projectsdl2\golf\main.cpp
 	<bits/stdc++.h>
-	<SDL.h>
-	<SDL_image.h>
-	<SDL_mixer.h>
 	"graphic.h"
 	"Ball.h"
 	"Button.h"
@@ -438,7 +435,7 @@
 	"graphic.h"
 	"entity.h"
 
-1715150930 source:d:\ngtvu\c++\projectsdl2\golf\ball.cpp
+1715151551 source:d:\ngtvu\c++\projectsdl2\golf\ball.cpp
 	<bits/stdc++.h>
 	"Ball.h"
 	"graphic.h"
@@ -452,19 +449,25 @@
 	"entity.h"
 	"math.h"
 
-1715150655 d:\ngtvu\c++\projectsdl2\golf\ball.h
+1715151551 d:\ngtvu\c++\projectsdl2\golf\ball.h
 	<bits/stdc++.h>
 	<SDL_mixer.h>
 	"entity.h"
 	"Hole.h"
 
-1715150863 source:d:\ngtvu\c++\projectsdl2\golf\button.cpp
+1715152419 source:d:\ngtvu\c++\projectsdl2\golf\button.cpp
 	<bits/stdc++.h>
 	"graphic.h"
 	"Button.h"
 
-1715150697 d:\ngtvu\c++\projectsdl2\golf\button.h
+1715152405 d:\ngtvu\c++\projectsdl2\golf\button.h
 	<bits/stdc++.h>
+	<SDL.h>
+	<SDL_image.h>
+	<SDL_mixer.h>
+	"entity.h"
+	"math.h"
+	"Hole.h"
 	"graphic.h"
 
 1713242370 source:d:\ngtvu\c++\projectsdl2\golf\circle,h.c

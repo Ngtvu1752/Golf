@@ -9,6 +9,7 @@ class Ball : public Entity
 {
 public:
     Ball(Vector2f p_pos, SDL_Texture* p_tex, SDL_Texture* p_point, SDL_Texture* powerBE, SDL_Texture* powerFE);
+    void free();
     Vector2f& getVelocity()
     {
         return velocity;

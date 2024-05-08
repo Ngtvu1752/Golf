@@ -1,5 +1,12 @@
 #pragma once
 #include<bits/stdc++.h>
+#include<SDL.h>
+#include<SDL_image.h>
+#include<SDL_mixer.h>
+
+#include "entity.h"
+#include "math.h"
+#include "Hole.h"
 #include "graphic.h"
 using namespace std;
 const int BUTTON_WIDTH = 161;
